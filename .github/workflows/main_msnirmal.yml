@@ -49,5 +49,5 @@ jobs:
         with:
           app-name: 'msnirmal'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_512016EDA0C84571B8E4A43AD2053FBF }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_36B4EC97095D42A9B885A5572E06C036 }}
           package: '*.jar'
