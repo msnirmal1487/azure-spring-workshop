@@ -15,6 +15,7 @@ public class TodoController {
 	@PostMapping("/")
     @ResponseStatus(HttpStatus.CREATED)
     public Todo createTodo(@RequestBody Todo todo) {
+        todo.setDescription(todo.getDescription() + " From Slot 2");
         return todoRepository.save(todo);
     }
 
