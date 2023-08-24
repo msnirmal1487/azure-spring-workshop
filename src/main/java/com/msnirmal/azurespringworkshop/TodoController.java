@@ -25,10 +25,11 @@ public class TodoController {
     @ResponseStatus(HttpStatus.CREATED)
     public Todo createTodo(@RequestBody Todo todo) {
 		System.out.println("env - "+ env);
+		todo.setDescription(env);
 		long len = todos.size();
 		todo.setId(len);
 		todos.add(todo);
-		if (isUseLocal()) {
+		if (isSkipDb()) {
 			return todo ; 
 		} else {
 			return todoRepository.save(todo);
@@ -39,15 +40,15 @@ public class TodoController {
     public Iterable<Todo> getTodos() {
     	System.out.println("env - "+ env);
     	
-    	if (isUseLocal()) {
+    	if (isSkipDb()) {
     		return todos; 
 		} else {
 			return todoRepository.findAll();
 		}
     }
     
-    private boolean isUseLocal() {
-    	if (env == null || (env != null && (env.equalsIgnoreCase("local") || env.equalsIgnoreCase("azure-local")))) {
+    private boolean isSkipDb() {
+    	if (env.equalsIgnoreCase("local") || env.equalsIgnoreCase("azure-local") || env.equalsIgnoreCase("no-profile") ) {
     		return true;
     	}
     	return false;
