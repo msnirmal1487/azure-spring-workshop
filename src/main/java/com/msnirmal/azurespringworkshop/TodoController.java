@@ -48,6 +48,7 @@ public class TodoController {
     }
     
     private boolean isSkipDb() {
+    	System.out.println(System.getProperty("spring.profiles.active"));
     	if (env.equalsIgnoreCase("local") || env.equalsIgnoreCase("azure-local") || env.equalsIgnoreCase("no-profile") ) {
     		return true;
     	}
